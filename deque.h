@@ -24,7 +24,6 @@ typedef struct deque Deque;
 //
 // DO NOT CHANGE THIS FUNCTION SIGNATURE
 Deque *new_deque();
-
 // Free the memory associated with a Deque
 //
 // DO NOT CHANGE THIS FUNCTION SIGNATURE
