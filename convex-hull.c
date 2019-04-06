@@ -33,8 +33,6 @@ char orientation(Point p0, Point p1, Point p2) {
     return COLLINEAR;
   }
 
-  fprintf(stderr, "Error: orientation() not implemented\n");
-  exit(EXIT_FAILURE);
 }
 
 // Takes a polygon (i.e. an array of points) given in counter-clockwise order
