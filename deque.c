@@ -3,7 +3,7 @@
  * Referenced largely part from week 2 Design of Alogithms "linked list and birthdays" solutions
  * created for COMP20007 Design of Algorithms 2019
  * template by Tobias Edwards <tobias.edwards@unimelb.edu.au>
- * implementation by <Insert Name Here>
+ * implementation by <Xicheng Fan>
  */
 
 //                   WRITE YOUR IMPLEMENTATION HERE
@@ -27,6 +27,9 @@
 #include "point.h"
 
 // TODO: Fill in this struct definition, or change the typedef in deque.h
+// a struct that represents the data type node  which holds pointer to the previous and next node 
+//and the deque that uses a double linked list quene
+// that holds the nodes in it 
 typedef struct node Node;
 struct node{
   Node *prev;
@@ -40,8 +43,6 @@ struct deque{
 };
 
 // Create a new empty Deque and return a pointer to it
-//
-// DO NOT CHANGE THIS FUNCTION SIGNATURE
 Deque *new_deque()
 {
   // TODO: Implement new_deque()
@@ -53,8 +54,6 @@ Deque *new_deque()
 }
 
 // Free the memory associated with a Deque
-//
-// DO NOT CHANGE THIS FUNCTION SIGNATURE
 
 void free_deque(Deque *deque)
 {
@@ -70,11 +69,7 @@ void free_deque(Deque *deque)
 }
 
 // Add a Point to the top of a Deque
-//
-// TODO: Fill in the runtime of this function
-// Runtime: ...
-//
-// DO NOT CHANGE THIS FUNCTION SIGNATURE
+// Runtime: O(1)
 void deque_push(Deque *deque, Point data)
 {
   // TODO: Implement deque_push()
@@ -96,11 +91,8 @@ void deque_push(Deque *deque, Point data)
 }
 
 // Add a Point to the bottom of a Deque
-//
-// TODO: Fill in the runtime of this function
-// Runtime: ...
-//
-// DO NOT CHANGE THIS FUNCTION SIGNATURE
+// Runtime: O(1)
+
 void deque_insert(Deque *deque, Point data)
 {
   // TODO: Implement deque_insert()
@@ -122,14 +114,12 @@ void deque_insert(Deque *deque, Point data)
 }
 
 // Remove and return the top Point from a Deque
-//
-// TODO: Fill in the runtime of this function
-// Runtime: ...
-//
-// DO NOT CHANGE THIS FUNCTION SIGNATURE
+// Runtime:O(1)
+
 Point deque_pop(Deque *deque)
 {
   // TODO: Implement deque_pop()
+  //Runtime: O(1)
   Node *node = deque->head;
 
   if (node == deque->tail)
@@ -145,11 +135,8 @@ Point deque_pop(Deque *deque)
 }
 
 // Remove and return the bottom Point from a Deque
-//
-// TODO: Fill in the runtime of this function
-// Runtime: ...
-//
-// DO NOT CHANGE THIS FUNCTION SIGNATURE
+// Runtime: O(1)
+
 Point deque_remove(Deque *deque)
 {
   // TODO: Implement deque_remove()
@@ -170,14 +157,27 @@ Point deque_remove(Deque *deque)
 }
 
 // Return the number of Points in a Deque
-//
-// TODO: Fill in the runtime of this function
-// Runtime: ...
-//
-// DO NOT CHANGE THIS FUNCTION SIGNATURE
+// Runtime:O(1)
+
 int deque_size(Deque *deque)
 {
   return deque->size;
 }
 
+Deque *get_deque(Deque *deque){
+  return deque;
+}
+
+Point get_head_data(Deque *deque){
+  return deque->head->data;
+}
+Point get_tail_data(Deque *deque){
+  return deque->tail->data;
+}
+Point get_head_next_data(Deque *deque){
+  return deque->head->next->data;
+}
+Point get_tail_prev_data(Deque *deque){
+  return deque->tail->prev->data;
+}
 // TODO: Add any other functions you might need for your Deque module

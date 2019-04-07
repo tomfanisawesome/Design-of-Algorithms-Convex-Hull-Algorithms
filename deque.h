@@ -70,5 +70,10 @@ Point deque_remove(Deque *deque);
 int deque_size(Deque *deque);
 
 // TODO: Add any other functions you might need for your Deque module
+Point get_head_data(Deque *deque);
+Point get_head_next_data(Deque *deque);
+Point get_tail_data(Deque *deque);
+Point get_tail_prev_data(Deque *deque);
+
 
 #endif
