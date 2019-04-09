@@ -26,16 +26,15 @@
 #include "deque.h"
 #include "point.h"
 
-// TODO: Fill in this struct definition, or change the typedef in deque.h
 // a struct that represents the data type node  which holds pointer to the previous and next node 
-//and the deque that uses a double linked list quene
-// that holds the nodes in it 
+
 typedef struct node Node;
 struct node{
   Node *prev;
   Node *next;
   Point data;
 };
+// the deque that uses a double linked list quene that holds the nodes in it 
 struct deque{
   Node *head;
   Node *tail;
@@ -45,7 +44,6 @@ struct deque{
 // Create a new empty Deque and return a pointer to it
 Deque *new_deque()
 {
-  // TODO: Implement new_deque()
   Deque *deque = malloc(sizeof(Deque));
   deque->head = NULL;
   deque->tail = NULL;
@@ -72,21 +70,24 @@ void free_deque(Deque *deque)
 // Runtime: O(1)
 void deque_push(Deque *deque, Point data)
 {
-  // TODO: Implement deque_push()
+  // new node malloced to contained the point data that will be pushed to the top of deque
   Node *node = malloc(sizeof(Node));
   node->prev = NULL;
   node->next = NULL;
   node->data = data;
+  //if tail is NULL, the new node is tail;
   if (deque->tail == NULL)
   {
     deque->tail = node;
   }
+  // if head is not null,this node becomes the head's prev node as well as the new node
   if (deque->head != NULL)
   {
     deque->head->prev = node;
   }
   node->next = deque->head;
   deque->head = node;
+  //update deque size
   deque->size++;
 }
 
@@ -95,21 +96,24 @@ void deque_push(Deque *deque, Point data)
 
 void deque_insert(Deque *deque, Point data)
 {
-  // TODO: Implement deque_insert()
+  // new node to be inserted into the que
   Node *node = malloc(sizeof(Node));
   node->data = data;
   node->next = NULL;
   node->prev = NULL;
+  // if head is null, node ->head
   if (deque->head == NULL)
   {
     deque->head = node;
   }
+  //if tail is not null,node is tail's next node
   if (deque->tail != NULL)
   {
     deque->tail->next = node;
   }
   node->prev = deque->tail;
   deque->tail = node;
+  //update size
   deque->size++;
 }
 
@@ -118,10 +122,9 @@ void deque_insert(Deque *deque, Point data)
 
 Point deque_pop(Deque *deque)
 {
-  // TODO: Implement deque_pop()
   //Runtime: O(1)
   Node *node = deque->head;
-
+// if the node poped is tail, tail is null
   if (node == deque->tail)
   {
     deque->tail = NULL;
@@ -130,6 +133,7 @@ Point deque_pop(Deque *deque)
   deque->size--;
   Point data;
   data = node->data;
+  // free memory used
   free(node);
   return data;
 }
@@ -139,7 +143,7 @@ Point deque_pop(Deque *deque)
 
 Point deque_remove(Deque *deque)
 {
-  // TODO: Implement deque_remove()
+  // store the data in a new node to be returned
   Node *node = deque->tail;
   Point data;
   if (node == deque->head)
@@ -151,6 +155,7 @@ Point deque_remove(Deque *deque)
   deque->size--;
 
   data = node->data;
+  // free memory used 
   free(node);
 
   return data;
@@ -164,10 +169,7 @@ int deque_size(Deque *deque)
   return deque->size;
 }
 
-Deque *get_deque(Deque *deque){
-  return deque;
-}
-
+// a series of get_data functions to get data needed in convex-hell.c 
 Point get_head_data(Deque *deque){
   return deque->head->data;
 }
@@ -180,4 +182,4 @@ Point get_head_next_data(Deque *deque){
 Point get_tail_prev_data(Deque *deque){
   return deque->tail->prev->data;
 }
-// TODO: Add any other functions you might need for your Deque module
+

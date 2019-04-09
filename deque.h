@@ -32,7 +32,7 @@ void free_deque(Deque *deque);
 // Add a Point to the top of a Deque
 //
 // TODO: Fill in the runtime of this function
-// Runtime: ...
+// Runtime: O(n)
 //
 // DO NOT CHANGE THIS FUNCTION SIGNATURE
 void deque_push(Deque *deque, Point data);
@@ -40,7 +40,7 @@ void deque_push(Deque *deque, Point data);
 // Add a Point to the bottom of a Deque
 //
 // TODO: Fill in the runtime of this function
-// Runtime: ...
+// Runtime:O(1)
 //
 // DO NOT CHANGE THIS FUNCTION SIGNATURE
 void deque_insert(Deque *deque, Point data);
@@ -48,7 +48,7 @@ void deque_insert(Deque *deque, Point data);
 // Remove and return the top Point from a Deque
 //
 // TODO: Fill in the runtime of this function
-// Runtime: ...
+// Runtime: O(1)
 //
 // DO NOT CHANGE THIS FUNCTION SIGNATURE
 Point deque_pop(Deque *deque);
@@ -56,7 +56,7 @@ Point deque_pop(Deque *deque);
 // Remove and return the bottom Point from a Deque
 //
 // TODO: Fill in the runtime of this function
-// Runtime: ...
+// Runtime: O(1)
 //
 // DO NOT CHANGE THIS FUNCTION SIGNATURE
 Point deque_remove(Deque *deque);
@@ -64,12 +64,13 @@ Point deque_remove(Deque *deque);
 // Return the number of Points in a Deque
 //
 // TODO: Fill in the runtime of this function
-// Runtime: ...
+// Runtime: O(1)
 //
 // DO NOT CHANGE THIS FUNCTION SIGNATURE
 int deque_size(Deque *deque);
 
 // TODO: Add any other functions you might need for your Deque module
+// header fucntions of get_data functions needed in convex-hull.c
 Point get_head_data(Deque *deque);
 Point get_head_next_data(Deque *deque);
 Point get_tail_data(Deque *deque);

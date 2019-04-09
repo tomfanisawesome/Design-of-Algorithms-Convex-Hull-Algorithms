@@ -24,8 +24,7 @@
 // If p0, p1 and p2 are collinear then COLLINEAR ('c') is returned.
 char orientation(Point p0, Point p1, Point p2)
 {
-  // TODO: Implement orientation()
-  //an algorithms that determines whether a point p2 is left or right  of the line P0P1
+  //an algorithms that determines whether a point p2 is left or right  of the line P0P1.
   double determinant = (p1.x - p0.x) * (p2.y - p0.y) - (p1.y - p0.y) * (p2.x - p0.x);
   if (determinant > 0)
   {
@@ -54,7 +53,6 @@ char orientation(Point p0, Point p1, Point p2)
 // If an error occurs this function should return INSIDE_HULL_ERROR.
 int inside_hull(Point *polygon, int n, Point *hull)
 {
-  // TODO: Implement the InsideHull algorithm
   int i = 0;
   int j = 0;
   Deque *deque = new_deque();
@@ -63,6 +61,7 @@ int inside_hull(Point *polygon, int n, Point *hull)
   {
     return INSIDE_HULL_ERROR;
   }
+  // else if orientation is left insert in quene<2,0,1,2>
   else if (orientation(polygon[i], polygon[i + 1], polygon[i + 2]) == LEFT)
   {
     deque_insert(deque, polygon[2]);
@@ -70,6 +69,7 @@ int inside_hull(Point *polygon, int n, Point *hull)
     deque_insert(deque, polygon[1]);
     deque_insert(deque, polygon[2]);
   }
+  //else if orientation is left insert in quene<2,1,0,2>
   else if (orientation(polygon[i], polygon[i + 1], polygon[i + 2]) == RIGHT)
   {
     deque_insert(deque, polygon[2]);
@@ -77,31 +77,32 @@ int inside_hull(Point *polygon, int n, Point *hull)
     deque_insert(deque, polygon[0]);
     deque_insert(deque, polygon[2]);
   }
+  //collinear points detected, abort program
   else
   {
     return COLLINEAR_POINTS;
   }
   i=4;
   while (i < n )
+  //if head=tail, break loop , we have found the convex hull
    {  if(get_head_data==get_tail_data){
       break;
     }
 
-    /*if (orientation(polygon[i], polygon[i + 1], polygon[i + 2]) == COLLINEAR)
-    {
-      return COLLINEAR_POINTS;
-    }*/
+    // if both orientation of head and tail is left, add 1 to i and keep looping to next point
     if(orientation(get_head_next_data(deque), get_head_data(deque), polygon[i]) == LEFT &&
              orientation(get_tail_data(deque), get_tail_prev_data(deque), polygon[i]) == LEFT)
     {
       i++;
       continue;
     }
+    // if orientation of head to new point  is right remove the top and the new point is now the new head.
     while (orientation(get_head_next_data(deque), get_head_data(deque), polygon[i]) == RIGHT)
     {
       deque_pop(deque);
     }
     deque_push(deque, polygon[i]);
+    // if head is right to the new point remove the tail and new point is the new tail
     while (orientation(get_tail_data(deque), get_tail_prev_data(deque), polygon[i]) == RIGHT)
     {
       deque_remove(deque);
@@ -110,6 +111,7 @@ int inside_hull(Point *polygon, int n, Point *hull)
     i++;
   }
   int count = deque_size(deque);
+  // insert the points stored in deque into hull and return the number of points in deque
   while (j < count)
   {
     hull[j] = deque_remove(deque);
