@@ -1,6 +1,3 @@
-# Convex hull algorithms 
+# A School Assigment on the Convex hull algorithms 
 
-A backup for school project that is Design of Alogirhtms Assignment 1
-
-2019 Semester 1
-COMP20007 Design of Algorithms School of Computing and Information Systems The University of Melbourne
+Convex hull alogirthsm is an alogithm that computes the minimum area that is needed for nodes in a graph to be connected as Minimum Spanning Tree.
